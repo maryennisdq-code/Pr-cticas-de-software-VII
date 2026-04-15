@@ -1,0 +1,157 @@
+# Laboratorio #2 – Implementación de Login en Laravel
+
+##  Introducción al lab
+
+Laravel es un framework de desarrollo web basado en PHP que utiliza el patrón de arquitectura Modelo-Vista-Controlador (MVC). Este patrón permite separar la lógica del sistema, facilitando el mantenimiento y la organización del código.
+
+El objetivo de este laboratorio fue comprender la estructura básica de Laravel, configurar un entorno de desarrollo y desarrollar un sistema de autenticación que incluye registro e inicio de sesión de usuarios.
+
+## Objetivo del Laboratorio
+
+* Comprender la arquitectura MVC en Laravel.
+* Configurar correctamente un entorno de desarrollo web.
+* Implementar un sistema de autenticación (login y registro).
+* Ejecutar migraciones para la creación de la base de datos.
+
+##  Requisitos Previos
+
+* PHP 8.0 o superior
+* Composer
+* Servidor local (Apache)
+* MySQL 
+* Node.js (para npm)
+* Editor de código (Visual Studio Code)
+* Sistema operativo: Windows
+
+##  Instalación y Configuración
+
+### 1. Creación del proyecto
+
+```bash
+laravel new login-app
+```
+o
+```bash
+composer create-project laravel/laravel login-app
+```
+
+### 2. Configuración del archivo .env
+
+Se configuró la base de datos:
+
+```env
+DB_DATABASE=login_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 3. Migraciones
+
+```bash
+php artisan migrate
+```
+
+Este comando crea las tablas necesarias en la base de datos.
+
+### 4. Instalación del sistema de autenticación
+
+```bash
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install
+npm run dev
+```
+
+Esto genera automáticamente:
+
+* Sistema de login
+* Registro de usuarios
+* Recuperación de contraseña
+### 5. Ejecución del proyecto
+
+```bash
+composer run dev
+```
+
+o alternativamente:
+
+```bash
+php artisan serve
+npm run dev
+```
+
+## Arquitectura MVC
+
+* **Modelo (Model):** Maneja la lógica de la base de datos.
+* **Vista (View):** Representa la interfaz de usuario (Blade).
+* **Controlador (Controller):** Gestiona la lógica de la aplicación y la comunicación entre modelo y vista.
+
+##  Base de Datos
+
+Se utilizó MySQL como sistema gestor de base de datos.
+
+* Se configuró mediante el archivo `.env`.
+* Se ejecutaron migraciones con `php artisan migrate`.
+* Laravel creó automáticamente tablas como:
+
+  * users
+  * password_resets
+
+##  Resultado
+
+El sistema permite:
+
+* Registro de usuarios
+* Inicio de sesión
+* Cierre de sesión
+
+(Agregar aquí captura de pantalla del login funcionando)
+
+
+## Dificultades y Soluciones
+
+**Problema 1:** Error de conexión a la base de datos
+**Solución:** Verificar configuración del archivo `.env` y que MySQL esté activo.
+
+**Problema 2:** Error 500
+**Solución:** Ejecutar:
+
+```bash
+php artisan key:generate
+```
+
+**Problema 3:** Cambios en .env no se reflejan
+**Solución:**
+
+```bash
+php artisan config:clear
+```
+
+**Problema 4:** Error con npm
+**Solución:** Instalar Node.js y ejecutar:
+
+```bash
+npm install
+```
+
+##  Referencias que utilize 
+
+* https://laravel.com/docs/12.x/installation
+* https://www.youtube.com/watch?v=yp04wvbAJPs
+
+
+
+##  Fecha de Ejecución
+
+(14-4-26) 
+
+## 👨‍💻 Información del Estudiante
+
+Este laboratorio ha sido desarrollado por la estudiante:
+
+* Nombre: Maryennis Deans 
+* Correo: maryennis.deans@utp.ac.pa
+* Curso: Desarrollo de software VII
+* Profesora: Irina Fong
+
+
