@@ -1,0 +1,117 @@
+CRUD Rápido con Laravel
+
+ Descripción del laboratorio
+
+Este laboratorio consiste en el desarrollo de un sistema CRUD 
+(Create, Read, Update, Delete) utilizando el framework Laravel.
+El objetivo es gestionar productos mediante operaciones básicas de inserción, consulta, actualización y eliminación en una base de datos.
+
+ Objetivo principal: 
+
+Implementar un CRUD funcional en Laravel que permita:
+
+- Crear productos
+- Listar productos
+- Editar productos
+- Eliminar productos
+
+Tecnologías Utilizadas: 
+
+- PHP 8.3
+- Laravel
+- MySQL
+- WAMP
+- Composer
+- Node.js / NPM
+- Bootstrap (para la interfaz)
+
+Instalación y Configuración
+
+1. Crear el proyecto Laravel
+
+composer create-project laravel/laravel crud_rapido
+
+2. Configurar la base de datos
+
+Editar el archivo ".env":
+
+DB_CONNECTION=mysql
+DB_DATABASE=crud_rapido
+DB_USERNAME=root
+DB_PASSWORD=
+
+Crear la base de datos en phpMyAdmin con el nombre:
+
+crud_rapido
+
+3. Crear el modelo y migración
+
+php artisan make:model Product -m
+
+Editar la migración:
+
+$table->id();
+$table->string('description');
+$table->double('price', 8, 2);
+$table->integer('stock');
+$table->timestamps();
+
+Ejecutar migraciones:
+
+php artisan migrate
+
+4. Generar CRUD automático
+
+composer require ibex/crud-generator --dev
+php artisan vendor:publish --tag=crud
+php artisan make:crud products
+
+Seleccionar:
+
+Blade with Bootstrap css
+
+5. Configurar rutas
+
+En "routes/web.php":
+
+use App\Http\Controllers\ProductController;
+
+Route::resource('products', ProductController::class);
+
+6. Ejecutar el proyecto
+
+npm install
+npm run dev
+php artisan serve
+
+Abrir en el navegador:
+
+http://127.0.0.1:8000/products
+
+
+Problemas Encontrados y Soluciones
+
+ Error: ProductRequest no encontrado
+
+Solución: eliminar o reemplazar por "Request" en el controlador.
+
+
+Error: Mass Assignment (_token)
+
+Solución: agregar en el modelo "Product.php":
+
+protected $fillable = ['description', 'price', 'stock'];
+
+
+ Resultado Final: 
+
+Se logró implementar un sistema CRUD funcional que permite la gestión completa de productos mediante una interfaz web.
+
+
+- Estudiante:Maryennis Deans 
+
+
+
+Fecha
+
+30 de Abril 2026
