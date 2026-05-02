@@ -1,0 +1,176 @@
+Laboratorio No. 4
+
+Implementación de Carga Automática (Autoload) con Composer bajo el estándar PSR-4
+
+Asignatura: Desarrollo de Software VII
+Estudiante: Maryennis Deans
+Profesora: Irina Fong 
+Fecha:2/5/26
+
+1. Introducción
+
+En el desarrollo de aplicaciones modernas en PHP, 
+la organización del código y la gestión eficiente de dependencias son fundamentales
+para garantizar mantenibilidad, escalabilidad y claridad estructural. 
+Este laboratorio se enfoca en la implementación
+del mecanismo de carga automática de clases 
+utilizando Composer bajo el estándar PSR-4,
+eliminando la necesidad de incluir manualmente 
+archivos mediante "include" o "require".
+
+
+2. Objetivo General
+
+Implementar correctamente el sistema de 
+carga automática (autoload) en PHP mediante Composer, 
+aplicando el estándar PSR-4 para la organización de clases y namespaces.
+
+
+3. Objetivos Específicos
+
+- Configurar el archivo "composer.json" para habilitar el autoload.
+- Aplicar el estándar PSR-4 en la estructura del proyecto.
+- Generar el autoloader mediante Composer.
+- Reemplazar el uso de "include"/"require" manuales por autoload.
+- Validar el correcto funcionamiento de la carga automática.
+
+
+4. Tecnologías Utilizadas
+
+- PHP (versión 8.x)
+- Composer
+- Terminal (CMD / PowerShell)
+- Editor de código (Visual Studio Code)
+
+
+5. Estructura del Proyecto
+
+1. laboratorio-autoload/
+1. 1 composer.json
+2.  index.php
+3.  src/
+4. Saludo.php
+5. vendor/
+
+
+
+6. Configuración del Autoload
+
+Se configuró el archivo "composer.json" para definir el mapeo de namespaces bajo el estándar PSR-4:
+
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
+
+Esta configuración indica que todas las clases
+bajo el namespace "App" se encuentran dentro de la carpeta "src/".
+
+
+7. Generación del Autoloader
+
+Para generar automáticamente el archivo de carga, se ejecutó el siguiente comando:
+
+composer dump-autoload
+
+Este proceso crea la carpeta "vendor/" y el archivo "autoload.php", que será utilizado en el sistema.
+
+
+8. Implementación de la Clase
+
+Archivo: "src/Saludo.php"
+
+<?php
+namespace App;
+
+class Saludo {
+    public function decirHola() {
+        return "Hola desde Composer Autoload";
+    }
+}
+
+
+
+9. Uso del Autoload en el Archivo Principal
+
+Archivo: "index.php"
+
+<?php
+require 'vendor/autoload.php';
+
+use App\Saludo;
+
+$saludo = new Saludo();
+echo $saludo->decirHola();
+
+
+10. Prueba de Funcionamiento
+
+Se ejecutó el proyecto mediante el siguiente comando:
+
+php index.php
+
+Resultado esperado:
+
+Hola desde Composer Autoload
+
+Esto confirma que las clases se cargan automáticamente sin necesidad de inclusión manual.
+
+
+11. Análisis Técnico
+
+La implementación del autoload bajo PSR-4 permite desacoplar la lógica de carga de archivos del desarrollo de clases, mejorando significativamente la arquitectura del sistema. Composer actúa como intermediario, gestionando automáticamente la ubicación y carga de clases según la estructura definida.
+
+
+12. Conclusiones que Obtuve del laboratorio
+
+- Mantenibilidad:
+  El uso de autoload permite incorporar nuevas clases sin modificar configuraciones globales, reduciendo errores y facilitando el mantenimiento.
+
+- Optimización de recursos:
+  La carga bajo demanda (lazy loading) mejora el rendimiento al cargar únicamente las clases necesarias.
+
+- Estandarización:
+  PSR-4 establece una convención clara que facilita el trabajo colaborativo y la comprensión del proyecto.
+
+
+13. Instrucciones de Ejecución
+
+1. Clonar el repositorio:
+
+git clone [URL_DEL_REPOSITORIO]
+
+2. Acceder al directorio del proyecto:
+
+cd laboratorio-autoload
+
+3. Generar el autoload:
+
+composer dump-autoload
+
+4. Ejecutar el programa:
+
+php index.php
+
+
+
+14. Consideraciones Finales
+
+- La carpeta "vendor/" no debe subirse al repositorio.
+- Se recomienda el uso de ".gitignore" para excluir dependencias.
+- Este laboratorio representa una práctica fundamental para proyectos PHP modernos
+y dejo admitir que me costo la realización del mismo, debido a los comandos. 
+
+
+15. Estado del Proyecto
+
+El proyecto cumple con los requisitos establecidos:
+
+- Implementación correcta del estándar PSR-4
+- Eliminación de includes manuales
+- Uso adecuado de Composer
+- Ejecución funcional del sistema
+
