@@ -1,117 +1,193 @@
-CRUD Rápido con Laravel
+# 📘 Laboratorio 3 – Implementación CRUD en Laravel
 
- Descripción del laboratorio
+##  Fecha de ejecución
 
-Este laboratorio consiste en el desarrollo de un sistema CRUD 
-(Create, Read, Update, Delete) utilizando el framework Laravel.
-El objetivo es gestionar productos mediante operaciones básicas de inserción, consulta, actualización y eliminación en una base de datos.
-
- Objetivo principal: 
-
-Implementar un CRUD funcional en Laravel que permita:
-
-- Crear productos
-- Listar productos
-- Editar productos
-- Eliminar productos
-
-Tecnologías Utilizadas: 
-
-- PHP 8.3
-- Laravel
-- MySQL
-- WAMP
-- Composer
-- Node.js / NPM
-- Bootstrap (para la interfaz)
-
-Instalación y Configuración
-
-1. Crear el proyecto Laravel
-
-composer create-project laravel/laravel crud_rapido
-
-2. Configurar la base de datos
-
-Editar el archivo ".env":
-
-DB_CONNECTION=mysql
-DB_DATABASE=crud_rapido
-DB_USERNAME=root
-DB_PASSWORD=
-
-Crear la base de datos en phpMyAdmin con el nombre:
-
-crud_rapido
-
-3. Crear el modelo y migración
-
-php artisan make:model Product -m
-
-Editar la migración:
-
-$table->id();
-$table->string('description');
-$table->double('price', 8, 2);
-$table->integer('stock');
-$table->timestamps();
-
-Ejecutar migraciones:
-
-php artisan migrate
-
-4. Generar CRUD automático
-
-composer require ibex/crud-generator --dev
-php artisan vendor:publish --tag=crud
-php artisan make:crud products
-
-Seleccionar:
-
-Blade with Bootstrap css
-
-5. Configurar rutas
-
-En "routes/web.php":
-
-use App\Http\Controllers\ProductController;
-
-Route::resource('products', ProductController::class);
-
-6. Ejecutar el proyecto
-
-npm install
-npm run dev
-php artisan serve
-
-Abrir en el navegador:
-
-http://127.0.0.1:8000/products
-
-
-Problemas Encontrados y Soluciones
-
- Error: ProductRequest no encontrado
-
-Solución: eliminar o reemplazar por "Request" en el controlador.
-
-
-Error: Mass Assignment (_token)
-
-Solución: agregar en el modelo "Product.php":
-
-protected $fillable = ['description', 'price', 'stock'];
-
-
- Resultado Final: 
-
-Se logró implementar un sistema CRUD funcional que permite la gestión completa de productos mediante una interfaz web.
-
-
-- Estudiante:Maryennis Deans 
+30 de abril de 2026
 
 
 
-Fecha
+##  Descripción General
 
-30 de Abril 2026
+En este laboratorio se desarrolló la implementación de un sistema CRUD (Create, Read, Update, Delete) utilizando el framework Laravel. El objetivo principal fue comprender el flujo completo de operaciones básicas sobre una base de datos, aplicando buenas prácticas del entorno MVC (Modelo-Vista-Controlador).
+
+
+
+##  Ecosistema del CRUD en Laravel
+
+El desarrollo del CRUD se apoyó en los siguientes componentes del ecosistema de Laravel:
+
+* **Rutas (web.php):** Definición de endpoints para acceder a cada operación.
+* **Controladores:** Manejo de la lógica de negocio para cada acción del CRUD.
+* **Modelos:** Representación de la estructura de la base de datos.
+* **Migraciones:** Creación y gestión de tablas en la base de datos.
+* **Vistas (Blade):** Interfaz de usuario para interactuar con el sistema.
+* **Base de datos (MySQL):** Almacenamiento de la información.
+* **Servidor local (Apache + PHP):** Ejecución del proyecto.
+
+
+
+##  Puntos de Referencia
+
+Durante el desarrollo se tomaron en cuenta los siguientes aspectos clave:
+
+* Implementación correcta de las rutas RESTful.
+* Uso adecuado de controladores con métodos:
+
+  * `index()`
+  * `create()`
+  * `store()`
+  * `edit()`
+  * `update()`
+  * `destroy()`
+* Validación de datos antes de ser almacenados.
+* Uso de migraciones para mantener la estructura de la base de datos organizada.
+* Separación clara entre lógica (backend) y presentación (frontend).
+* Pruebas constantes del sistema para verificar cada operación.
+
+https://immune.institute/blog/operaciones-crud-que-son-como-funcionan/
+
+##  Dificultades Encontradas
+
+Durante la realización del laboratorio surgieron algunos inconvenientes:
+
+* Problemas al conectar la base de datos correctamente.
+* Errores en las rutas que impedían acceder a ciertas vistas.
+* Fallos al ejecutar migraciones por conflictos en la estructura.
+* Dificultad en la comprensión del flujo entre controlador, modelo y vista.
+* Problemas con formularios que no enviaban correctamente los datos.
+
+## COdigos Implementados 
+Migración de la base de datos:
+public function up(): void
+{
+    Schema::create('productos', function (Blueprint $table) {
+        $table->id();
+        $table->string('nombre');
+        $table->text('descripcion')->nullable();
+        $table->decimal('precio', 10, 2);
+        $table->timestamps();
+    });
+}
+
+Rutas: 
+use App\Http\Controllers\ProductoController;
+
+Route::resource('productos', ProductoController::class);
+
+Archivo de index.blade para las vistas :
+<h1>Lista de Productos</h1>
+
+<a href="{{ route('productos.create') }}">Crear producto</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach ($productos as $producto)
+    <tr>
+        <td>{{ $producto->id }}</td>
+        <td>{{ $producto->nombre }}</td>
+        <td>{{ $producto->precio }}</td>
+        <td>
+            <a href="{{ route('productos.edit', $producto->id) }}">Editar</a>
+
+            <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</table>
+
+
+Archivo de productcontroller:
+use App\Models\Producto;
+use Illuminate\Http\Request;
+
+class ProductoController extends Controller
+{
+    public function index()
+    {
+        $productos = Producto::all();
+        return view('productos.index', compact('productos'));
+    }
+
+    public function create()
+    {
+        return view('productos.create');
+    }
+
+    public function store(Request $request)
+    {
+        Producto::create($request->all());
+        return redirect()->route('productos.index');
+    }
+
+    public function edit($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('productos.edit', compact('producto'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->update($request->all());
+        return redirect()->route('productos.index');
+    }
+
+    public function destroy($id)
+    {
+        Producto::destroy($id);
+        return redirect()->route('productos.index');
+    }
+}
+
+##  Soluciones Aplicadas
+
+Para resolver los problemas anteriores se implementaron las siguientes soluciones:
+
+* Verificación del archivo `.env` para asegurar la correcta configuración de la base de datos.
+* Revisión y corrección de rutas en `web.php`.
+* Uso de comandos como:
+
+  * `php artisan migrate`
+  * `php artisan serve`
+* Implementación de validaciones en los controladores.
+* Uso de `@csrf` en formularios para evitar errores de seguridad.
+* Pruebas iterativas para detectar y corregir errores rápidamente.
+* Consulta de documentación oficial de Laravel como apoyo.
+
+
+
+##  Resultado Final
+
+A continuación se muestra una representación del resultado del sistema CRUD funcionando:
+
+![Resultado del CRUD](./images/crud.png)
+
+
+
+##  Conclusión
+
+Este laboratorio permitió comprender de manera práctica cómo funciona un CRUD dentro del framework Laravel, reforzando conceptos clave como la arquitectura MVC, el manejo de rutas y la interacción con bases de datos. Además, ayudó a desarrollar habilidades para la resolución de errores y la estructuración de aplicaciones web de forma organizada.
+
+
+
+##  Información del Estudiante
+
+**Nombre:** Maryennis Deans
+**Grupo:** 1GS132
+**Profesora:** Irina Fong
+
+
+
+## 🔻 Footer
+
+© 2026 - Maryennis Deans | Grupo 1GS132 | Profesora Irina Fong
