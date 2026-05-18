@@ -1,176 +1,241 @@
 Laboratorio No. 4
 
-Implementación de Carga Automática (Autoload) con Composer bajo el estándar PSR-4
+Implementación de Carga Automática (Autoload) con Composer y Estructura Base en Laravel
 
-Asignatura: Desarrollo de Software VII
-Estudiante: Maryennis Deans
-Profesora: Irina Fong 
-Fecha:2/5/26
+Asignatura
 
-1. Introducción
+Desarrollo de Software VII – 2026
 
-En el desarrollo de aplicaciones modernas en PHP, 
-la organización del código y la gestión eficiente de dependencias son fundamentales
-para garantizar mantenibilidad, escalabilidad y claridad estructural. 
-Este laboratorio se enfoca en la implementación
-del mecanismo de carga automática de clases 
-utilizando Composer bajo el estándar PSR-4,
-eliminando la necesidad de incluir manualmente 
-archivos mediante "include" o "require".
+Estudiante
 
+Maryennis Deans
 
-2. Objetivo General
+Profesora
 
-Implementar correctamente el sistema de 
-carga automática (autoload) en PHP mediante Composer, 
-aplicando el estándar PSR-4 para la organización de clases y namespaces.
-
-
-3. Objetivos Específicos
-
-- Configurar el archivo "composer.json" para habilitar el autoload.
-- Aplicar el estándar PSR-4 en la estructura del proyecto.
-- Generar el autoloader mediante Composer.
-- Reemplazar el uso de "include"/"require" manuales por autoload.
-- Validar el correcto funcionamiento de la carga automática.
-
-
-4. Tecnologías Utilizadas
-
-- PHP (versión 8.x)
-- Composer
-- Terminal (CMD / PowerShell)
-- Editor de código (Visual Studio Code)
-
-
-5. Estructura del Proyecto
-
-1. laboratorio-autoload/
-1. 1 composer.json
-2.  index.php
-3.  src/
-4. Saludo.php
-5. vendor/
+Irina Fong
 
 
 
-6. Configuración del Autoload
+1. Documentación del Repositorio
 
-Se configuró el archivo "composer.json" para definir el mapeo de namespaces bajo el estándar PSR-4:
+Este laboratorio tiene como finalidad implementar el mecanismo de carga automática de clases utilizando Composer bajo el estándar PSR-4, además de comprender la estructura inicial del ecosistema Laravel y su organización basada en el patrón MVC.
 
-{
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/"
-    }
-  }
-}
-
-Esta configuración indica que todas las clases
-bajo el namespace "App" se encuentran dentro de la carpeta "src/".
+Durante el desarrollo del laboratorio se configuró Composer correctamente, se trabajó con namespaces y autoload, y se realizaron pruebas de ejecución mediante terminal para validar el funcionamiento del sistema.
 
 
-7. Generación del Autoloader
 
-Para generar automáticamente el archivo de carga, se ejecutó el siguiente comando:
+2. Ecosistema de Laravel
+
+Laravel es un framework de PHP orientado al desarrollo de aplicaciones web modernas siguiendo buenas prácticas de programación y arquitectura MVC.
+
+Entre sus principales características se encuentran:
+
+- Sistema de rutas
+- Motor de plantillas Blade
+- ORM Eloquent
+- Migraciones de bases de datos
+- Composer para gestión de dependencias
+- Sistema de autenticación
+- Arquitectura MVC
+
+Laravel permite desarrollar aplicaciones escalables y organizadas de forma más eficiente.
+
+
+
+3. Modelo MVC y Principales Carpetas
+
+Laravel utiliza el patrón arquitectónico MVC (Modelo - Vista - Controlador).
+
+Modelo (Model)
+
+Se encarga de la lógica de negocio y la interacción con la base de datos.
+
+Carpeta:
+
+app/Models
+
+
+
+Vista (View)
+
+Representa la interfaz visual que observa el usuario.
+
+Carpeta:
+
+resources/views
+
+
+
+Controlador (Controller)
+
+Gestiona la comunicación entre las vistas y los modelos.
+
+Carpeta:
+
+app/Http/Controllers
+
+
+
+Otras carpetas importantes
+
+routes/
+
+Contiene las rutas del sistema.
+
+database/
+
+Incluye migraciones, seeders y factories.
+
+public/
+
+Directorio público accesible desde el navegador.
+
+vendor/
+
+Dependencias instaladas mediante Composer.
+
+
+
+4. Imagen del Resultado
+
+Durante la ejecución del laboratorio se verificó:
+
+- Funcionamiento de Composer
+- Configuración correcta del autoload
+- Reconocimiento de PHP desde terminal
+- Creación de estructura del proyecto
+- Ejecución de comandos mediante Composer
+
+Resultado esperado en terminal:
+
+PHP 8.2.12
+Composer version 2.x
+
+
+
+5. Base de Datos
+
+Laravel trabaja normalmente con sistemas gestores de bases de datos como:
+
+- MySQL
+- MariaDB
+- PostgreSQL
+- SQLite
+
+La configuración se realiza en el archivo:
+
+.env
+
+Ejemplo:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crud
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+
+6. Dificultades y Soluciones
+
+Problema 1
+
+PHP no era reconocido desde la terminal.
+
+Solución
+
+Se configuró correctamente la variable PATH agregando:
+
+C:\xampp\php
+
+
+
+Problema 2
+
+Composer no era reconocido como comando.
+
+Solución
+
+Se reinstaló Composer correctamente enlazándolo con:
+
+C:\xampp\php\php.exe
+
+
+
+Problema 3
+
+Error de compatibilidad con versiones recientes de Laravel.
+
+Solución
+
+Se utilizó Laravel 10, compatible con PHP 8.2.12.
+
+
+
+Problema 4
+
+Advertencias relacionadas con ZIP y descargas desde Composer.
+
+Solución
+
+Se identificó la necesidad de habilitar la extensión ZIP en el archivo "php.ini".
+
+
+
+7. Puntos de Referencia
+
+Comandos utilizados durante el laboratorio:
+
+Verificar PHP
+
+php -v
+
+Verificar Composer
+
+composer -V
+
+Crear proyecto Laravel
+
+composer create-project laravel/laravel="10.*" CRUD
+
+Generar autoload
 
 composer dump-autoload
 
-Este proceso crea la carpeta "vendor/" y el archivo "autoload.php", que será utilizado en el sistema.
 
 
-8. Implementación de la Clase
+8. Etiquetar el Footer
 
-Archivo: "src/Saludo.php"
-
-<?php
-namespace App;
-
-class Saludo {
-    public function decirHola() {
-        return "Hola desde Composer Autoload";
-    }
-}
+El footer permite mostrar información general del proyecto y datos académicos relevantes al final de la documentación.
 
 
 
-9. Uso del Autoload en el Archivo Principal
+9. Fecha de Ejecución
 
-Archivo: "index.php"
+Fecha de realización del laboratorio:
 
-<?php
-require 'vendor/autoload.php';
-
-use App\Saludo;
-
-$saludo = new Saludo();
-echo $saludo->decirHola();
-
-
-10. Prueba de Funcionamiento
-
-Se ejecutó el proyecto mediante el siguiente comando:
-
-php index.php
-
-Resultado esperado:
-
-Hola desde Composer Autoload
-
-Esto confirma que las clases se cargan automáticamente sin necesidad de inclusión manual.
-
-
-11. Análisis Técnico
-
-La implementación del autoload bajo PSR-4 permite desacoplar la lógica de carga de archivos del desarrollo de clases, mejorando significativamente la arquitectura del sistema. Composer actúa como intermediario, gestionando automáticamente la ubicación y carga de clases según la estructura definida.
-
-
-12. Conclusiones que Obtuve del laboratorio
-
-- Mantenibilidad:
-  El uso de autoload permite incorporar nuevas clases sin modificar configuraciones globales, reduciendo errores y facilitando el mantenimiento.
-
-- Optimización de recursos:
-  La carga bajo demanda (lazy loading) mejora el rendimiento al cargar únicamente las clases necesarias.
-
-- Estandarización:
-  PSR-4 establece una convención clara que facilita el trabajo colaborativo y la comprensión del proyecto.
-
-
-13. Instrucciones de Ejecución
-
-1. Clonar el repositorio:
-
-git clone [URL_DEL_REPOSITORIO]
-
-2. Acceder al directorio del proyecto:
-
-cd laboratorio-autoload
-
-3. Generar el autoload:
-
-composer dump-autoload
-
-4. Ejecutar el programa:
-
-php index.php
+Mayo 2026
 
 
 
-14. Consideraciones Finales
+Conclusión
 
-- La carpeta "vendor/" no debe subirse al repositorio.
-- Se recomienda el uso de ".gitignore" para excluir dependencias.
-- Este laboratorio representa una práctica fundamental para proyectos PHP modernos
-y dejo admitir que me costo la realización del mismo, debido a los comandos. 
+La realización de este laboratorio permitió comprender el funcionamiento de Composer 
+y el estándar PSR-4 para la carga automática de clases en PHP. 
+Además, se identificó la importancia de una correcta configuración del entorno de desarrollo, especialmente en variables PATH, versiones de PHP y dependencias de Composer.
+
+El laboratorio también permitió introducir conceptos fundamentales del framework Laravel y su arquitectura MVC, fortaleciendo conocimientos esenciales para el desarrollo de aplicaciones web modernas.
 
 
-15. Estado del Proyecto
 
-El proyecto cumple con los requisitos establecidos:
-
-- Implementación correcta del estándar PSR-4
-- Eliminación de includes manuales
-- Uso adecuado de Composer
-- Ejecución funcional del sistema
+<hr><footer>
+  <center>
+    <p><strong>Desarrollo de Software VII - 2026</strong></p>
+    <p>Laboratorio No. 4 - Composer Autoload y Laravel</p>
+    <p>Estudiante: Maryennis Deans</p>
+    <p>Profesora: Irina Fong</p>
+    <p>Universidad Tecnológica de Panamá</p>
+  </center>
+</footer>
 
