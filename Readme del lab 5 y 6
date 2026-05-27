@@ -1,0 +1,550 @@
+Laboratorio de Seguridad en PHP con OpenSSL
+
+<div align="center">
+
+## UNIVERSIDAD TECNOLÓGICA DE PANAMÁ
+### Facultad de Ingeniería Eléctrica
+### Desarrollo de Software VII
+### Año 2026
+
+---
+
+Estudiante
+ Maryennis Deans
+
+#Profesora
+Ing. Irina Fong
+
+</div>
+
+
+
+ Introducción
+
+La seguridad informática es uno de los pilares fundamentales dentro del desarrollo de aplicaciones web modernas. Actualmente, la protección de datos y la autenticidad de la información representan aspectos esenciales para garantizar sistemas confiables y seguros.
+
+PHP incorpora la biblioteca OpenSSL, la cual permite implementar funciones criptográficas avanzadas como generación de llaves, firmas digitales, cifrado y descifrado de mensajes.
+
+En este laboratorio se desarrollaron distintos procesos criptográficos utilizando OpenSSL en PHP, permitiendo comprender conceptos relacionados con confidencialidad, integridad y autenticidad de la información.
+
+Además, se implementó un sistema interactivo de cifrado simétrico utilizando el algoritmo AES-128-CBC mediante un formulario web desarrollado en PHP.
+
+---
+
+Objetivo General
+
+Aplicar funciones criptográficas utilizando la biblioteca OpenSSL en PHP para comprender procesos de firma digital, verificación y cifrado de información.
+
+---
+
+ Objetivos Específicos
+
+- Ejecutar scripts criptográficos utilizando OpenSSL.
+- Comprender el funcionamiento de firmas digitales.
+- Analizar funciones criptográficas implementadas en PHP.
+- Implementar cifrado simétrico utilizando AES-128-CBC.
+- Comprender conceptos de seguridad informática.
+- Documentar técnicamente funciones relacionadas con criptografía.
+
+Tecnologías Utilizadas
+
+| Tecnología | Descripción |
+|---|---|
+| PHP | Lenguaje de programación utilizado |
+| OpenSSL | Biblioteca criptográfica |
+| HTML5 | Diseño de formularios |
+| CSS3 | Estilos visuales |
+| XAMPP | Servidor local |
+| AES-128-CBC | Algoritmo de cifrado |
+
+
+
+Scripts Ejecutados
+
+
+
+Script: firma7
+
+ Descripción
+
+El script `firma7` permite generar procesos de firma digital utilizando criptografía asimétrica mediante OpenSSL.
+
+Funcionalidades
+
+- Generación de llaves públicas y privadas.
+- Firma digital de mensajes.
+- Verificación de autenticidad.
+- Validación de integridad.
+
+Importancia
+
+Este script demuestra cómo las firmas digitales garantizan que un mensaje no haya sido modificado y que realmente provenga del remitente legítimo.
+
+
+
+Script: Firmaotra
+
+ Descripción
+
+`Firmaotra` implementa otro método de firma digital utilizando funciones criptográficas de OpenSSL en PHP.
+
+Funcionalidades
+
+- Generación de firmas.
+- Verificación criptográfica.
+- Validación de autenticidad.
+
+Importancia
+
+Permite comprender el funcionamiento de la criptografía asimétrica aplicada a aplicaciones web seguras.
+
+---
+
+Script: FirmaMensaje
+
+ Descripción
+
+El script `FirmaMensaje` permite firmar mensajes digitales y posteriormente verificar si el contenido fue alterado.
+
+Funcionalidades
+
+- Firma digital.
+- Verificación de integridad.
+- Validación de autenticidad.
+
+Importancia
+
+Demuestra cómo proteger mensajes mediante técnicas criptográficas.
+
+---
+
+Script: Encriptación Simple con OpenSSL
+
+ Descripción
+
+Este script realiza procesos básicos de cifrado y descifrado utilizando OpenSSL.
+
+ Funcionalidades
+
+- Cifrado de datos.
+- Descifrado de mensajes.
+- Protección de información sensible.
+
+Importancia
+
+Permite comprender cómo proteger información mediante algoritmos criptográficos.
+
+---
+
+ Funciones OpenSSL Utilizadas
+
+---
+
+openssl_pkey_new()
+
+ Propósito
+
+Generar un nuevo par de llaves criptográficas pública y privada.
+
+ Parámetros
+
+Recibe un arreglo de configuración con tamaño y tipo de algoritmo.
+
+Valor Devuelto
+
+Devuelve un recurso OpenSSL correspondiente a la llave generada.
+
+Explicación
+
+La criptografía asimétrica utiliza dos llaves:
+- Llave pública
+- Llave privada
+
+La llave privada se utiliza para firmar información y la pública para verificar autenticidad.
+
+---
+
+openssl_sign()
+
+Propósito
+
+Generar firmas digitales para mensajes.
+
+Parámetros
+
+- Datos a firmar.
+- Variable donde se almacena la firma.
+- Llave privada.
+- Algoritmo hash.
+
+Valor Devuelto
+
+TRUE si la firma fue generada correctamente.
+
+Explicación
+
+Garantiza:
+- Integridad
+- Autenticidad
+- No repudio
+
+---
+
+openssl_verify()
+
+ Propósito
+
+Verificar una firma digital.
+
+ Parámetros
+
+- Mensaje original.
+- Firma digital.
+- Llave pública.
+- Algoritmo hash.
+
+ Valor Devuelto
+
+- 1 → Firma válida
+- 0 → Firma inválida
+- -1 → Error
+
+ Explicación
+
+Permite comprobar que el mensaje no fue modificado.
+openssl_encrypt()
+
+Propósito
+
+Cifrar información utilizando algoritmos criptográficos.
+
+Parámetros
+
+- Texto original.
+- Método de cifrado.
+- Clave secreta.
+- Opciones.
+- Vector IV.
+
+Valor Devuelto
+
+Texto cifrado.
+
+Explicación
+
+Convierte información legible en datos protegidos.
+
+
+openssl_decrypt()
+
+Propósito
+
+Descifrar información previamente cifrada.
+
+Parámetros
+
+- Texto cifrado.
+- Método.
+- Clave.
+- Opciones.
+- Vector IV.
+
+Valor Devuelto
+
+Texto original descifrado.
+
+ Explicación
+
+Permite recuperar la información original utilizando la clave correcta.
+
+---
+ openssl_random_pseudo_bytes()
+
+Propósito
+
+Generar bytes aleatorios criptográficamente seguros.
+
+Parámetros
+
+Cantidad de bytes deseados.
+
+Valor Devuelto
+
+Cadena binaria aleatoria.
+
+Explicación
+
+Se utiliza para generar vectores de inicialización seguros.
+
+---
+
+Script Completo: encriptacion.php
+
+```php
+<?php
+
+$mensajeOriginal = "";
+$claveUsuario = "";
+$mensajeCifrado = "";
+$mensajeDescifrado = "";
+$ivHex = "";
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $mensajeOriginal = trim($_POST['mensaje']);
+    $claveUsuario = trim($_POST['clave']);
+
+    if (empty($mensajeOriginal) || empty($claveUsuario)) {
+
+        $error = "Todos los campos son obligatorios.";
+
+    } else {
+
+        $claveNormalizada = str_pad(substr($claveUsuario, 0, 16), 16, "0");
+
+        $metodo = 'AES-128-CBC';
+
+        $ivLength = openssl_cipher_iv_length($metodo);
+
+        $iv = openssl_random_pseudo_bytes($ivLength);
+
+        $mensajeCifrado = openssl_encrypt(
+            $mensajeOriginal,
+            $metodo,
+            $claveNormalizada,
+            0,
+            $iv
+        );
+
+        $mensajeDescifrado = openssl_decrypt(
+            $mensajeCifrado,
+            $metodo,
+            $claveNormalizada,
+            0,
+            $iv
+        );
+
+        $ivHex = bin2hex($iv);
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Encriptación con OpenSSL</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 40px;
+}
+
+.contenedor {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+textarea,
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.resultado {
+    background-color: #eeeeee;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Encriptación AES-128-CBC con OpenSSL</h1>
+
+<form method="POST">
+
+<label>Mensaje en Claro:</label>
+
+<textarea name="mensaje" rows="5"></textarea>
+
+<label>Clave Secreta Compartida:</label>
+
+<input type="text" name="clave">
+
+<button type="submit">Procesar</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
+```
+
+
+ Explicación del Script
+
+El archivo `encriptacion.php` implementa un sistema de cifrado simétrico utilizando el algoritmo AES-128-CBC mediante OpenSSL.
+
+ Funcionamiento
+
+ Captura de Datos
+
+El usuario introduce:
+- Un mensaje.
+- Una clave secreta.
+
+mediante un formulario HTML.
+
+
+
+Validación
+
+El sistema verifica que:
+- Los campos no estén vacíos.
+- Los datos sean válidos.
+
+
+
+Normalización de Clave
+
+La clave ingresada es ajustada a exactamente 16 caracteres utilizando:
+
+```php
+str_pad()
+```
+
+Esto es necesario porque AES-128 requiere claves de 128 bits.
+
+
+ Generación del IV
+
+Se genera un Vector de Inicialización aleatorio utilizando:
+
+```php
+openssl_random_pseudo_bytes()
+```
+
+
+Cifrado
+
+El mensaje es cifrado utilizando:
+
+```php
+openssl_encrypt()
+```
+
+ Descifrado
+
+Posteriormente el mensaje es recuperado utilizando:
+
+```php
+openssl_decrypt()
+```
+
+
+Resultados
+
+El sistema muestra:
+- IV hexadecimal.
+- Texto cifrado.
+- Mensaje descifrado.
+
+
+ Resultados Obtenidos
+
+Durante el desarrollo del laboratorio se logró:
+
+- Comprender el funcionamiento de OpenSSL.
+- Ejecutar procesos de firma digital.
+- Aplicar criptografía asimétrica.
+- Implementar cifrado simétrico.
+- Utilizar AES-128-CBC.
+- Proteger información mediante criptografía.
+
+
+
+Conclusiones
+
+Este laboratorio permitió comprender la importancia de la criptografía dentro del desarrollo web moderno y la relevancia de proteger la información mediante mecanismos seguros.
+
+La utilización de OpenSSL en PHP facilitó la implementación de procesos criptográficos como:
+- Firmas digitales
+- Verificación de autenticidad
+- Cifrado y descifrado de mensajes
+
+La implementación práctica del algoritmo AES-128-CBC permitió entender el funcionamiento del cifrado simétrico y la importancia del Vector de Inicialización (IV) como elemento adicional de seguridad.
+
+Además, se fortalecieron conocimientos relacionados con:
+- Confidencialidad
+- Integridad
+- Autenticidad
+- Protección de datos
+
+Finalmente, el laboratorio ayudó a desarrollar habilidades técnicas relacionadas con:
+- Configuración de OpenSSL
+- Resolución de errores
+- Desarrollo de aplicaciones seguras en PHP
+- Implementación de funciones criptográficas
+
+
+ Bibliografía
+
+ PHP Documentation
+https://www.php.net/manual/es/ref.openssl.php
+
+ OpenSSL Official Documentation
+https://www.openssl.org/docs/
+
+Apache Friends - XAMPP
+https://www.apachefriends.org/
+
+
+# 👩‍💻 Footer
+
+<div align="center">
+
+## Desarrollado por Maryennis Deans
+### Desarrollo de Software VII
+### Universidad Tecnológica de Panamá
+### Año 2026
+
+</div>
