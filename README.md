@@ -164,22 +164,8 @@ Durante el desarrollo del laboratorio se logró:
 Inserte aquí una captura de pantalla del resultado obtenido durante la ejecución del laboratorio.
 
 ```
-<img width="842" height="260" alt="Captura de pantalla 2026-05-31 193905" src="https://github.com/user-attachments/assets/62970692-1943-4829-adfd-0710dbf70576" />
+<img src="https://github.com/user-attachments/assets/a30cce55-93d1-4bb6-887d-e0c655baccef" /> 
 
----
-
-## Dificultades y Soluciones
-
-### Dificultad 1
-
-Las clases creadas no eran reconocidas automáticamente por Laravel.
-
-**Solución:**
-
-Ejecutar:
-
-```bash
-composer dump-autoload
 ```
 
 para regenerar los archivos de carga automática.
