@@ -163,9 +163,8 @@ Durante el desarrollo del laboratorio se logró:
 
 Inserte aquí una captura de pantalla del resultado obtenido durante la ejecución del laboratorio.
 
-```md
-![Resultado del Laboratorio](images/resultado.png)
 ```
+<img width="842" height="260" alt="Captura de pantalla 2026-05-31 193905" src="https://github.com/user-attachments/assets/f8f1ede6-b672-4044-946c-c6491fd42d42" />
 
 ---
 
