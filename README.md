@@ -164,8 +164,6 @@ Durante el desarrollo del laboratorio se logró:
 Inserte aquí una captura de pantalla del resultado obtenido durante la ejecución del laboratorio.
 
 ```
-![Resultado del laboratorio](https://raw.githubusercontent.com/maryennisdq-code/Pr-cticas-de-software-VII/733603d96773543b83f08b38c3747d2cc7450893/Captura%20de%20pantalla%202026-05-31%20193905.png) 
-
 
 
 ```
