@@ -164,7 +164,7 @@ Durante el desarrollo del laboratorio se logró:
 Inserte aquí una captura de pantalla del resultado obtenido durante la ejecución del laboratorio.
 
 ```
-<img src="https://github.com/user-attachments/assets/a30cce55-93d1-4bb6-887d-e0c655baccef" /> 
+
 
 ```
 
