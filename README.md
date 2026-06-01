@@ -164,6 +164,8 @@ Durante el desarrollo del laboratorio se logró:
 Inserte aquí una captura de pantalla del resultado obtenido durante la ejecución del laboratorio.
 
 ```
+Captura de pantalla 2026-05-31 193905.png
+
 
 
 ```
